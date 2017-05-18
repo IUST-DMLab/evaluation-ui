@@ -41,30 +41,6 @@
 
             <md-divider></md-divider>
 
-            <div layout="row">
-                <div flex="30">
-                    <md-input-container>
-                        <md-button class="md-raised md-primary" ng-click="submit(true);">تایید همه</md-button>
-                    </md-input-container>
-                </div>
-                <div flex="70" style="text-align: left;">
-                    <md-input-container>
-                        <label>دلیل عدم پاسخگویی</label>
-                        <md-select ng-model="data.statusReason" style="width: 300px;">
-                            <md-option ng-repeat="r in reasons" ng-value="r">{{r}}</md-option>
-                        </md-select>
-                    </md-input-container>
-
-                    <md-input-container>
-                        <md-button class="md-raised md-warn"
-                                   ng-click="submit(false, data.statusReason);">عدم امکان پاسخگویی
-                        </md-button>
-                    </md-input-container>
-
-                </div>
-                <div flex hide-sm hide-xs></div>
-            </div>
-
             <div class="md-padding">
                 <md-table-container>
                     <table md-table cellpadding="10" cellspacing="0" style="width: 100%;">
@@ -79,9 +55,10 @@
                         <tr md-row>
                             <td md-cell></td>
                             <td md-cell>
-                                <md-button class="md-raised md-primary" ng-click="checkAll('true')">تایید همه
+                                <md-button class="md-raised md-primary" ng-click="checkAll('true')">همه مرتبط
                                 </md-button>
-                                <md-button class="md-raised md-warn" ng-click="checkAll('false')">رد همه</md-button>
+                                <md-button class="md-raised md-warn" ng-click="checkAll('false')">همه نامرتبط
+                                </md-button>
                             </td>
                             <td md-cell></td>
                         </tr>
@@ -92,7 +69,9 @@
                             <td md-cell>
                                 <md-radio-group ng-model="item.relevant" layout="row">
                                     <md-radio-button value="true" class="md-primary">مرتبط</md-radio-button>
-                                    <md-radio-button value="false" ng-disabled="item.fixed" class="md-warn md-mini">نامرتبط</md-radio-button>
+                                    <md-radio-button value="false" ng-disabled="item.fixed" class="md-warn md-mini">
+                                        نامرتبط
+                                    </md-radio-button>
                                 </md-radio-group>
                             </td>
                             <td md-cell>
@@ -153,23 +132,35 @@
                         </div>
                         <div>
                             <md-button class="md-raised md-primary"
-                                       style="background-color: darkgreen"
+                                       style="background-color: darkorange"
                                        ng-click="add(entity);">افزودن آیتم مرتبط
                             </md-button>
                         </div>
                     </div>
                 </div>
 
-                <div layout="row" ng-if="data.search.results">
-                    <md-input-container>
-                        <span>{{data.search.result}}</span>
-                        <span>data.search.result</span>
-                    </md-input-container>
 
-                    <md-input-container>
+            </div>
 
-                    </md-input-container>
-                </div>
+            <md-divider></md-divider>
+
+            <div layout="row">
+
+                <md-input-container>
+                    <label>دلیل عدم پاسخگویی</label>
+                    <md-select ng-model="data.statusReason" style="width: 300px;">
+                        <md-option ng-value=""></md-option>
+                        <md-option ng-repeat="r in reasons" ng-value="r">{{r}}</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container>
+                    <md-button class="md-raised md-primary"
+                               style="background-color: darkgreen"
+                               ng-click="submit();">ثبت اطلاعات
+                    </md-button>
+                </md-input-container>
+
             </div>
 
         </div>

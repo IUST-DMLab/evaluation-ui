@@ -22,7 +22,10 @@ app
                 });
         };
 
-        $scope.submit = function (status, reason) {
+        $scope.submit = function () {
+
+            let reason = $scope.data.statusReason || '';
+            let status = (reason.length === 0);
 
             let judgmentList = $scope.data.searchResults
                 .map(function (item) {
@@ -60,11 +63,9 @@ app
                 }
             };
 
-            console.log(data);
-
             RestService.submit(data)
                 .then(function (response) {
-                    console.log(response.data);
+                    $scope.next();
                 });
         };
 
