@@ -62,7 +62,7 @@ app.service('RestService', ['$http', function ($http) {
 
     this.submit = function (userResponse) {
         let url = baseURl + '/rest/v1/evaluation/submit';
-        let params = {userResponse: userResponse};
+        let params = userResponse;
         return post(url, params, {});
     };
 
