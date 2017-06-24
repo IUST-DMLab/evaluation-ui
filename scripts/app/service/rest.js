@@ -52,7 +52,7 @@ app.service('RestService', ['$http', function ($http) {
         //return $http.post(url, data, headers).then(onsuccess, onerror);
     }
 
-    /**/
+    //
 
     this.next = function (personId) {
         var url = baseURl + '/rest/v1/evaluation/next';
@@ -71,6 +71,14 @@ app.service('RestService', ['$http', function ($http) {
         let params = {keyword: keyword};
         return get(url, params, {});
     };
+
+    // eval
+
+    this.eval = function (k) {
+        var url = baseURl + '/rest/v1/evaluation/admin/eval-p-at-k';
+        var params = {"k": k};
+        return get(url, params, {});
+    }
 
 }]);
 

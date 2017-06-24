@@ -1,5 +1,5 @@
 app
-    .controller('MainController', function ($scope, $http, RestService, $mdDialog) {
+    .controller('MainController', function ($scope, RestService, $mdDialog) {
 
         let personId = 'a';
 
@@ -87,4 +87,17 @@ app
         // on load do the followings
 
         $scope.next();
+    })
+    .controller('EvalController', function ($scope, RestService) {
+        $scope.loaded = false;
+
+        $scope.evaluate = function () {
+            let k = 1;
+            RestService.eval(k)
+                .then(function (response) {
+                    $scope.loaded = true;
+                    $scope.precision = response.data;
+                });
+        }
+
     });
