@@ -47,7 +47,7 @@
             <md-list-item class="md-3-line" ng-repeat="query in queries" ng-click="null">
                 <div class="md-list-item-text" layout="row">
                     <span flex>{{query.q}}</span>
-                    <md-button class="md-icon-button md-primary" aria-label="remove" ng-click="remove(query.q);">
+                    <md-button class="md-icon-button md-primary" aria-label="remove" ng-click="remove($event, query.q);">
                         <span class="fa fa-2x fa-remove"></span>
                     </md-button>
                 </div>

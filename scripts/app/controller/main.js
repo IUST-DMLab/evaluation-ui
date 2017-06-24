@@ -101,7 +101,7 @@ app
         }
 
     })
-    .controller('QueriesController', function ($scope, RestService) {
+    .controller('QueriesController', function ($scope, RestService, $mdDialog) {
 
         $scope.load = function () {
             RestService.loadQueries()
@@ -111,19 +111,40 @@ app
         };
 
         $scope.add = function () {
-            if(!$scope.newQuery) return;
+            if (!$scope.newQuery) return;
 
             RestService.addQuery($scope.newQuery)
                 .then(function (response) {
+                    $scope.newQuery = '';
                     $scope.load();
                 });
         };
 
-        $scope.remove = function (query) {
-            RestService.removeQuery(query)
-                .then(function (response) {
-                    $scope.load();
-                });
+        $scope.remove = function (ev, query) {
+
+            // RestService.removeQuery(query)
+            //     .then(function (response) {
+            //         $scope.load();
+            //     });
+
+            var confirm = $mdDialog.confirm()
+                .title('آیا پرس و جوی «' + query + '» حذف شود؟')
+                .textContent('')
+                .ariaLabel('')
+                .targetEvent(ev)
+                .ok('حذف')
+                .cancel('انصراف');
+
+            $mdDialog.show(confirm).then(function () {
+                console.log(query);
+                RestService.removeQuery(query)
+                    .then(function (response) {
+                        $scope.load();
+                    });
+            }, function () {
+            });
+
+
         };
 
 
