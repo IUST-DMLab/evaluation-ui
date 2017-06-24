@@ -78,7 +78,27 @@ app.service('RestService', ['$http', function ($http) {
         var url = baseURl + '/rest/v1/evaluation/admin/eval-p-at-k';
         var params = {"k": k};
         return get(url, params, {});
-    }
+    };
+
+    // queries
+
+    this.loadQueries = function () {
+        let url = baseURl + '/rest/v1/evaluation/admin/allqueries';
+        let params = {};
+        return get(url, params, {});
+    };
+
+    this.addQuery = function (query) {
+        let url = baseURl + '/rest/v1/evaluation/admin/addquery';
+        let params = {"q" : query};
+        return post(url, params, {});
+    };
+
+    this.removeQuery = function (query) {
+        let url = baseURl + '/rest/v1/evaluation/admin/deletequery';
+        let data = {"q" : query};
+        return post(url, data, {});
+    };
 
 }]);
 

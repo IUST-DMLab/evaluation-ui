@@ -100,4 +100,35 @@ app
                 });
         }
 
+    })
+    .controller('QueriesController', function ($scope, RestService) {
+
+        $scope.load = function () {
+            RestService.loadQueries()
+                .then(function (response) {
+                    $scope.queries = response.data;
+                });
+        };
+
+        $scope.add = function () {
+            if(!$scope.newQuery) return;
+
+            RestService.addQuery($scope.newQuery)
+                .then(function (response) {
+                    $scope.load();
+                });
+        };
+
+        $scope.remove = function (query) {
+            RestService.removeQuery(query)
+                .then(function (response) {
+                    $scope.load();
+                });
+        };
+
+
+        //
+
+        $scope.load();
+
     });
