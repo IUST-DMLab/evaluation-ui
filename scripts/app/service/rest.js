@@ -1,6 +1,6 @@
 app.service('RestService', ['$http', function ($http) {
-    var baseURl = 'http://194.225.227.161:8096';
-    // let baseURl = 'http://dmls.iust.ac.ir:8099/proxy/evaluation';
+    // var baseURl = 'http://194.225.227.161:8096';
+    let baseURl = 'http://dmls.iust.ac.ir:8099/proxy/evaluation';
 
     let self = this;
     this.ingoing = 0;
@@ -26,7 +26,11 @@ app.service('RestService', ['$http', function ($http) {
         params = params || {};
         params.random = new Date().getTime();
 
-        var req = {
+        headers = headers || {};
+        headers["Access-Control-Request-Headers"] = 'x-auth-token';
+        headers["x-auth-token"] = localStorage.getItem('authToken');
+
+        let req = {
             method: 'GET',
             url: url,
             headers: headers,
