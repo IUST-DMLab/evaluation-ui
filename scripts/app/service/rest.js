@@ -1,6 +1,6 @@
 app.service('RestService', ['$http', function ($http) {
-    // var baseURl = 'http://194.225.227.161:8096';
-    let baseURl = 'http://dmls.iust.ac.ir:8099/proxy/evaluation';
+    var baseURl = 'http://194.225.227.161:8096';
+    // let baseURl = 'http://dmls.iust.ac.ir:8099/proxy/evaluation';
 
     let self = this;
     this.ingoing = 0;
