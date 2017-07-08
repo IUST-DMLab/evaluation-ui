@@ -55,9 +55,9 @@ app.service('RestService', ['$http', function ($http) {
 
     //
 
-    this.next = function (personId) {
+    this.next = function (personId, user) {
         var url = baseURl + '/rest/v1/evaluation/next';
-        var params = {"personId": personId};
+        var params = {"personId": personId, user: user || ''};
         return get(url, params, {});
     };
 
@@ -91,13 +91,13 @@ app.service('RestService', ['$http', function ($http) {
 
     this.addQuery = function (query) {
         let url = baseURl + '/rest/v1/evaluation/admin/addquery';
-        let params = {"q" : query};
+        let params = {"q": query};
         return post(url, params, {});
     };
 
     this.removeQuery = function (query) {
         let url = baseURl + '/rest/v1/evaluation/admin/deletequery';
-        let data = {"q" : query};
+        let data = {"q": query};
         return post(url, data, {});
     };
 
