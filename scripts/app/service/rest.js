@@ -27,8 +27,10 @@ app.service('RestService', ['$http', function ($http) {
         params.random = new Date().getTime();
 
         headers = headers || {};
-        headers["Access-Control-Request-Headers"] = 'x-auth-token';
-        headers["x-auth-token"] = localStorage.getItem('authToken');
+        if (url.indexOf('/searcher/') === -1) {
+            headers["Access-Control-Request-Headers"] = 'x-auth-token';
+            headers["x-auth-token"] = localStorage.getItem('authToken');
+        }
 
         let req = {
             method: 'GET',
