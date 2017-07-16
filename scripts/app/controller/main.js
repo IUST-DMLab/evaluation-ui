@@ -92,7 +92,7 @@ app
         $scope.loaded = false;
 
         $scope.evaluate = function () {
-            let k = 1;
+            let k = $scope.k;
             RestService.eval(k)
                 .then(function (response) {
                     $scope.loaded = true;

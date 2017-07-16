@@ -45,6 +45,10 @@
                 </md-card-title-text>
             </md-card-title>
             <md-card-content layout="column" layout-align="center start">
+                <md-input-container>
+                    <label>k</label>
+                    <input type="text" ng-model="k" required>
+                </md-input-container>
                 <md-button class="md-raised md-primary" ng-click="evaluate()">ارزیابی</md-button>
                 <span ng-if="loaded">
                     <span>دقت : </span>

@@ -29,6 +29,8 @@ app.service('RestService', ['$http', function ($http) {
         headers = headers || {};
         headers["Access-Control-Request-Headers"] = 'x-auth-token';
         headers["x-auth-token"] = localStorage.getItem('authToken');
+        // headers['X-Requested-With']=  'XMLHttpRequest';
+        headers['Content-Type'] = 'text/plain';
 
         let req = {
             method: 'GET',
