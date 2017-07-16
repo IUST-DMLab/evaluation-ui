@@ -43,6 +43,11 @@ app.service('RestService', ['$http', function ($http) {
     }
 
     function post(url, data, headers) {
+
+        headers = headers || {};
+        headers["Access-Control-Request-Headers"] = 'x-auth-token';
+        headers["x-auth-token"] = localStorage.getItem('authToken');
+
         var req = {
             method: 'POST',
             url: url,
