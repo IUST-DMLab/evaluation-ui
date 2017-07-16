@@ -22,12 +22,12 @@ app.service('RestService', ['$http', function ($http) {
         return response;
     }
 
-    function get(url, params, headers) {
+    function get(url, params, headers, auth) {
         params = params || {};
         params.random = new Date().getTime();
 
         headers = headers || {};
-        if (url.indexOf('/searcher/') === -1) {
+        if (auth === undefined || auth === null || auth) {
             headers["Access-Control-Request-Headers"] = 'x-auth-token';
             headers["x-auth-token"] = localStorage.getItem('authToken');
         }
@@ -81,7 +81,7 @@ app.service('RestService', ['$http', function ($http) {
     this.search = function (keyword) {
         let url = 'http://194.225.227.161:8093' + '/rest/v1/searcher/search';
         let params = {keyword: keyword};
-        return get(url, params, {});
+        return get(url, params, {}, false);
     };
 
     // eval
